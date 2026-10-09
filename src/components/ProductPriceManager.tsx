@@ -79,31 +79,10 @@ export default function ProductPriceManager() {
     },
   });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const products: IProduct[] = productsData?.data || [];
 
   // Reset all stock to 0
-  const handleResetAllStock = async () => {
-    if (
-      !window.confirm(
-        'আপনি কি নিশ্চিত যে সমস্ত ৫৯টি পণ্যের স্টক ০ (শূন্য) করতে চান?\n\nএটি করার পর নতুন চালান আগমন (Stock Inward) ছাড়া সকল পণ্যের গোডাউন স্টক ০ থাকবে।'
-      )
-    ) {
-      return;
-    }
-    setIsResettingStock(true);
-    try {
-      const res = await api.post('/products/reset-all-stock');
-      toast.success(res.data.message || 'সকল পণ্যের স্টক সফলভাবে ০ করা হয়েছে!');
-      queryClient.invalidateQueries({ queryKey: ['products'] });
-      queryClient.invalidateQueries({ queryKey: ['monthly-report'] });
-      queryClient.invalidateQueries({ queryKey: ['dashboard-summary'] });
-      refetch();
-    } catch (err: any) {
-      toast.error(err.response?.data?.message || 'স্টক রিসেট করতে সমস্যা হয়েছে');
-    } finally {
-      setIsResettingStock(false);
-    }
-  };
 
   // Open single price edit modal
   const handleOpenPriceModal = (product: IProduct) => {
@@ -266,7 +245,7 @@ export default function ProductPriceManager() {
 
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 rounded-xl text-xs font-black shadow-md shadow-orange-500/20 transition"
+              className="flex items-center gap-1.5 px-4 py-2 bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 rounded-xl text-xs font-black shadow-md shadow-orange-500/20 transition"
             >
               <Plus className="w-4 h-4" />
               নতুন আইটেম যোগ করুন
@@ -276,7 +255,7 @@ export default function ProductPriceManager() {
 
         {/* Security & Price Integrity Notice */}
         <div className="mt-5 rounded-xl p-3.5 flex items-start gap-3 text-xs text-slate-600 bg-emerald-50 border border-emerald-200">
-          <ShieldCheck className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+          <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
           <div>
             <span className="font-bold text-slate-900">স্মার্ট হিস্টোরিক্যাল রেট প্রটেকশন:</span>{' '}
             আপনি যেকোনো বিস্কুটের নতুন বিক্রয় রেট (Trade Price) বা ডিলার রেট (Dealer Price) আপডেট করলে পূর্ববর্তী তারিখের
@@ -333,7 +312,7 @@ export default function ProductPriceManager() {
               <tr>
                 <th className="py-3 px-3 text-center w-12">#</th>
                 <th className="py-3 px-3 w-24">SKU</th>
-                <th className="py-3 px-4 min-w-[220px]">পণ্যের নাম (Product Name)</th>
+                <th className="py-3 px-4 min-w-55">পণ্যের নাম (Product Name)</th>
                 <th className="py-3 px-3 text-center">ক্যাটাগরি</th>
                 <th className="py-3 px-3 text-center">প্যাকিং</th>
                 <th className="py-3 px-3 text-right">ক্রয় রেট (IP)</th>
@@ -368,7 +347,7 @@ export default function ProductPriceManager() {
                       <td className="py-3 px-3 text-center text-xs text-slate-500">{index + 1}</td>
                       <td className="py-3 px-3 font-mono font-bold text-xs text-amber-400">{p.sku}</td>
                       <td className="py-3 px-4">
-                        <div className="font-bold text-slate-900 font-bold">{p.name}</div>
+                        <div className="font-bold text-slate-900">{p.name}</div>
                         {p.banglaName && (
                           <div className="text-xs text-slate-400 font-normal">{p.banglaName}</div>
                         )}
@@ -610,7 +589,7 @@ export default function ProductPriceManager() {
               <button
                 onClick={() => priceUpdateMutation.mutate()}
                 disabled={priceUpdateMutation.isPending}
-                className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black rounded-xl text-xs shadow-lg shadow-orange-500/20 transition disabled:opacity-50"
+                className="px-5 py-2.5 bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black rounded-xl text-xs shadow-lg shadow-orange-500/20 transition disabled:opacity-50"
               >
                 {priceUpdateMutation.isPending ? 'আপডেট হচ্ছে...' : 'নতুন রেট কার্যকর করুন'}
               </button>
@@ -753,7 +732,7 @@ export default function ProductPriceManager() {
               <button
                 onClick={() => createProductMutation.mutate()}
                 disabled={createProductMutation.isPending || !newProduct.sku || !newProduct.name}
-                className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black rounded-xl text-xs transition disabled:opacity-50"
+                className="px-5 py-2.5 bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black rounded-xl text-xs transition disabled:opacity-50"
               >
                 {createProductMutation.isPending ? 'যোগ হচ্ছে...' : 'সংরক্ষণ করুন'}
               </button>

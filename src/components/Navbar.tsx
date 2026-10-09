@@ -43,7 +43,7 @@ export default function Navbar({ activeTab, setActiveTab, lowStockCount = 0, pen
   const canAccess = (minRole: string) => {
     if (isDeveloper) return true;
     if (minRole === 'user') return true;
-    if (minRole === 'admin') return isAdmin;
+    if (minRole === 'admin') return isAdmin || isDealer;
     if (minRole === 'dealer') return isDealer || isAdmin;
     if (minRole === 'developer') return isDeveloper;
     return false;

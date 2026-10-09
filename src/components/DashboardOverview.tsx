@@ -92,7 +92,7 @@ export default function DashboardOverview({ setActiveTab }: Props) {
         </div>
 
         {/* Quick Actions - only visible to admin/dealer/developer */}
-        {isAdmin && (
+        {(isAdmin || isDealer) && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 4 }}>
             {[
               { id: 'daily-sales', icon: '📝', label: 'বিক্রয় এন্ট্রি' },
@@ -224,7 +224,7 @@ export default function DashboardOverview({ setActiveTab }: Props) {
               </div>
             ))}
           </div>
-          {isAdmin && (
+          {(isAdmin || isDealer) && (
             <button
               onClick={() => setActiveTab('stock-inward')}
               style={{
