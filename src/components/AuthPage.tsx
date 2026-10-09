@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import {
   Eye, EyeOff, Loader2, Lock, Mail, User,
-  PackageCheck, ShieldCheck, ArrowRight, KeyRound,
+  ShieldCheck, ArrowRight, KeyRound,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -95,16 +95,19 @@ export default function AuthPage() {
 
       {/* Brand */}
       <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-        <div style={{
-          width: 60, height: 60,
-          background: 'linear-gradient(135deg, #f97316, #ea580c)',
-          borderRadius: 16,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          margin: '0 auto 14px',
-          boxShadow: '0 8px 24px rgba(249,115,22,0.28)',
-        }}>
-          <PackageCheck size={32} color="#fff" />
-        </div>
+        <img
+          src="/logo.png"
+          alt="Tanvir Traders Logo"
+          style={{
+            width: 64,
+            height: 64,
+            borderRadius: 16,
+            objectFit: 'cover',
+            margin: '0 auto 14px',
+            display: 'block',
+            boxShadow: '0 8px 24px rgba(249,115,22,0.28)',
+          }}
+        />
         <h1 style={{ fontSize: 22, fontWeight: 900, color: '#0f172a', margin: 0 }}>
           TANVIR TRADERS
         </h1>

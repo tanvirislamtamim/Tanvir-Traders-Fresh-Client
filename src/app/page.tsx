@@ -13,7 +13,7 @@ import AuthPage from '@/components/AuthPage';
 import { useAuth } from '@/context/AuthContext';
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/axios';
-import { Loader2, PackageCheck, Lock } from 'lucide-react';
+import { Loader2, Lock } from 'lucide-react';
 
 export default function Home() {
   const { user, loading, isDeveloper, isDealer, isAdmin } = useAuth();
@@ -47,14 +47,17 @@ export default function Home() {
         alignItems: 'center', justifyContent: 'center', gap: 16,
         background: 'linear-gradient(135deg,#fff7ed,#f8f9fb)',
       }}>
-        <div style={{
-          width: 56, height: 56, borderRadius: 14,
-          background: 'linear-gradient(135deg,#f97316,#ea580c)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 8px 24px rgba(249,115,22,0.28)',
-        }}>
-          <PackageCheck size={28} color="#fff" />
-        </div>
+        <img
+          src="/logo.png"
+          alt="Tanvir Traders Logo"
+          style={{
+            width: 56,
+            height: 56,
+            borderRadius: 14,
+            objectFit: 'cover',
+            boxShadow: '0 8px 24px rgba(249,115,22,0.28)',
+          }}
+        />
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#94a3b8', fontSize: 13 }}>
           <Loader2 size={16} color="#f97316" style={{ animation: 'spin 1s linear infinite' }} />
           লোড হচ্ছে...

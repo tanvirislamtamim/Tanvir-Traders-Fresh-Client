@@ -4,7 +4,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   TrendingUp, ShoppingBag, Truck, AlertTriangle,
-  ArrowRight, PackageCheck, CalendarDays, Layers,
+  ArrowRight, CalendarDays, Layers,
 } from 'lucide-react';
 import api from '@/lib/axios';
 import { formatBDT } from '@/lib/pdfExport';
@@ -58,8 +58,20 @@ export default function DashboardOverview({ setActiveTab }: Props) {
         color: '#fff',
         display: 'flex', flexDirection: 'column', gap: 10,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <PackageCheck size={28} color="#fff" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <img
+            src="/logo.png"
+            alt="Tanvir Traders Logo"
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 12,
+              objectFit: 'cover',
+              border: '2px solid rgba(255,255,255,0.4)',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+              flexShrink: 0,
+            }}
+          />
           <div>
             <div style={{ fontSize: 18, fontWeight: 900 }}>TANVIR TRADERS</div>
             <div style={{ fontSize: 11, opacity: 0.85 }}>Meghna Beverage Ltd — Fresh</div>

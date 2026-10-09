@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import {
   Store, CalendarDays, Truck, Tag, BarChart3,
-  LogOut, PackageCheck, ShieldCheck, User,
+  LogOut, ShieldCheck, User,
   Code2, Users, Menu, X, Clock, Handshake,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
@@ -72,15 +72,18 @@ export default function Navbar({ activeTab, setActiveTab, lowStockCount = 0, pen
               style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}
               onClick={() => handleNav('dashboard')}
             >
-              <div style={{
-                width: 38, height: 38, borderRadius: 10,
-                background: 'linear-gradient(135deg,#f97316,#ea580c)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 3px 10px rgba(249,115,22,0.25)',
-                flexShrink: 0,
-              }}>
-                <PackageCheck size={20} color="#fff" />
-              </div>
+              <img
+                src="/logo.png"
+                alt="Tanvir Traders Logo"
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: 10,
+                  objectFit: 'cover',
+                  boxShadow: '0 3px 10px rgba(249,115,22,0.25)',
+                  flexShrink: 0,
+                }}
+              />
               <div>
                 <div style={{ fontWeight: 900, fontSize: 15, color: '#0f172a', lineHeight: 1.2 }}>
                   TANVIR TRADERS
